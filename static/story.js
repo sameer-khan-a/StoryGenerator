@@ -1,4 +1,6 @@
-async function generateStory() {
+async function generateStory(event) {
+    if (event) event.preventDefault(); // Prevent form refresh if called from onsubmit
+
     const idea = document.getElementById("storyIdea").value.trim();
     const outputDiv = document.getElementById("output");
 
@@ -7,13 +9,18 @@ async function generateStory() {
         return;
     }
 
-    outputDiv.innerText = "Generating story... please wait ⏳";
+    // Show loading spinner
+    outputDiv.innerHTML = `
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    `;
 
     try {
         const response = await fetch("/generate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idea: idea })
+            body: JSON.stringify({ idea })
         });
 
         const data = await response.json();
