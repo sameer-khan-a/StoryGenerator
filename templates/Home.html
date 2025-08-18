@@ -38,11 +38,39 @@
     </div>
   </div>
   </nav>
-  <div class="container w-100 mt-5 pt-5 d-flex flex-column align-items-center " >
-  <h2>Story Generator</h2>
-<form class="w-100 d-flex align-items-center flex-column" onsubmit="generateStory(event)">
-  <input type="text" id="storyIdea" class="col-8" placeholder="Enter your one-line story idea..." />
-  
+  <div class="container w-100 mt-5 pt-5 d-flex flex-column align-items-center card shadow-lg p-4 mb-4 "  >
+  <h2 class="card-title">Story Generator</h2>
+<form class="w-100 d-flex align-items-center flex-column card-body" onsubmit="generateStory(event)">
+  <div class="mb-3 mt-3 w-100  fw-bold d-flex flex-column align-items-center">
+  <input type="textarea" id="storyIdea" class="col-6" placeholder="Enter your one-line story idea..." />
+  </div>
+  <div class="mb-3 mt-3 w-50  fw-bold">
+  <label for="genre" class="form-label ">Genre</label>
+  <select class="form-select" id="genre">
+    <option value="fantasy">Fantasy</option>
+    <option value="sci-fi">Sci-Fi</option>
+    <option value="mystery">Mystery</option>
+    <option value="romance">Romance</option>
+  </select>
+</div>
+
+<div class="mb-3 mt-3 w-50  fw-bold ">
+  <label for="tone" class="form-label">Tone</label>
+  <select class="form-select" id="tone">
+    <option value="serious">Serious</option>
+    <option value="funny">Funny</option>
+    <option value="adventurous">Adventurous</option>
+  </select>
+</div>
+
+<div class="mb-3 mt-3 w-50  fw-bold ">
+  <label for="sizeSlider" class="form-label">Story Size</label>
+  <input type="range" class="form-range" min="1" max="3" step="1" id="sizeSlider">
+  <div class="form-text">1 = Short, 2 = Medium, 3 = Long</div>
+</div>
+
+
+
   <div class="d-flex w-25 justify-content-center gap-3">
     <button type="submit" class="btn btn-success w-100">Generate Story</button>
     <input type="reset" class="btn btn-danger w-100" />
@@ -51,7 +79,12 @@
 
 </div>
   </div>
-  <div id="output" class="container-fluid col-10 col-sm-8 d-flex justify-content-center"></div>
+<div class="container w-100 mt-5 pt-5 d-flex flex-column align-items-center card shadow-lg p-4 mb-4 " style="">
+    <h4 class="card-title">Generated Story</h4>
+    <div class="card-body w-75" style="border: 2px solid black" id="output"></div>
+    <button class="btn btn-success mt-3 w-25" onclick="saveStory()">Save as Text</button>
+  </div>
+
 <footer class="d-flex flex-wrap justify-content-around fixed-bottom bg-dark-subtle py-2  mx-0 px-4 border-top"> <p class="col-md-4 mb-0 text-body-secondary">© 2025 Company, Inc</p> <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" aria-label="Bootstrap"> <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg> </a> <ul class="nav col-md-4 justify-content-end"> <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li> <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li> <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li> <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li> <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li> </ul> </footer>
   <script src="{{ url_for('static', filename='story.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
