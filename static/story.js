@@ -52,4 +52,23 @@ function saveStory() {
   link.click();
 
 }
+document.getElementById("darkModeToggle").addEventListener("change", function() {
+  document.body.classList.toggle("bg-dark");
+  document.body.classList.toggle("text-white");
+  document.querySelectorAll(".card").forEach(card => {
+    card.classList.toggle("bg-dark");
+    card.classList.toggle("text-white");
+  });
+});
 
+function saveAsPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const storyText = document.getElementById("output").innerText;
+
+  // split into multiple lines so text doesn’t overflow
+  const lines = doc.splitTextToSize(storyText, 180);
+  doc.text(lines, 10, 10);
+
+  doc.save("story.pdf");
+}
